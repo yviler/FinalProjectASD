@@ -42,32 +42,74 @@ class StringMatcher {
         return lps;
     }
 
-    public boolean kmp(String txt, String pat) {
-        int M = pat.length();
-        int N = txt.length();
-
-        int lps[] = new int[M];
-        lps = computeLPSArray(pat);
-        int j = 0;
-
-        int i = 0;
-        while (i < N) {
-            if (pat.charAt(j) == txt.charAt(i)) {
-                j++;
-                i++;
-            }
-            if (j == M) {
+    public boolean isSpaced(String txt){
+        for (int i = 0; i < txt.length(); i++) {
+            if(txt.charAt(i) == ' '){
                 return true;
-            }
-            else if (i < N && pat.charAt(j) != txt.charAt(i)) {
-
-                if (j != 0)
-                    j = lps[j - 1];
-                else
-                    i++;
             }
         }
         return false;
+    }
+
+    public boolean kmp(String txt, String pat) {
+        if(!isSpaced(pat)){
+            int M = pat.length();
+            int N = txt.length();
+
+            int lps[] = new int[M];
+            lps = computeLPSArray(pat);
+            int j = 0;
+
+            int i = 0;
+            while (i < N) {
+                if (pat.charAt(j) == txt.charAt(i)) {
+                    j++;
+                    i++;
+                }
+                if (j == M) {
+                    return true;
+                }
+                else if (i < N && pat.charAt(j) != txt.charAt(i)) {
+
+                    if (j != 0)
+                    j = lps[j - 1];
+                    else
+                    i++;
+                }
+            }
+            return false;
+        } else{
+            String[] patterns = pat.split(" ");
+            int N = txt.length();
+
+            for (int i = 0; i < patterns.length; i++) {
+                int M = patterns[i].length();
+                int lps[] = new int[M];
+                lps = computeLPSArray(patterns[i]);
+                int k = 0;
+                int j = 0;
+
+                while (j < N){
+                    if (patterns[i].charAt(k) == txt.charAt(j)){
+                        k++;
+                        j++;
+                    }
+                    if (k == M){
+                        return true;
+                    }
+                    else if(j < N && patterns[i].charAt(j) != txt.charAt(j)){
+                        if(k != 0)
+                        k = lps[j-1];
+                        else
+                        j++;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        
     }
 }
 
