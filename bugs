@@ -1,0 +1,2 @@
+1. spacing bikin error : String index out of range
+	(coba pake string.split?)
