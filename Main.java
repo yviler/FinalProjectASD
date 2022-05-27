@@ -156,11 +156,11 @@ class Graph{
                     if(newDistance < distance[j])distance[j] = newDistance;
                 }
             }
-            if(distance[dst] == Integer.MAX_VALUE){
-                System.out.println("no route");
-            } else{
-                System.out.println("distance-" + distance[dst]);
-            }
+        }
+        if(distance[dst] == Integer.MAX_VALUE){
+            System.out.println("no route");
+        } else{
+            System.out.println("distance-" + distance[dst]);
         }
     }
 
