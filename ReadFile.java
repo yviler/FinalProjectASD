@@ -21,7 +21,6 @@ public class ReadFile {
             while(fr.ready()) {
                 ch = (char)fr.read();
                    
-                // Used to specify the delimiters
                 if (ch == '\n' || ch == ',') {
                    
                     listOfStrings.add(s.toString());

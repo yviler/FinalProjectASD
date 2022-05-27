@@ -157,10 +157,11 @@ class Graph{
                 }
             }
         }
+        System.out.print("Distance from " + src + " to " + dst + " : ");
         if(distance[dst] == Integer.MAX_VALUE){
-            System.out.println("no route");
+            System.out.println("No route");
         } else{
-            System.out.println("distance-" + distance[dst]);
+            System.out.println(distance[dst]);
         }
     }
 
